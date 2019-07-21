@@ -1,0 +1,18 @@
+<br/>
+<mat-card style="overflow: auto;">
+  <form [formGroup]="form" class="full-width">
+    <mat-form-field class="input-config">
+      <input matInput placeholder="Enter with the term and press '+' button" formControlName="term">
+    </mat-form-field>
+    <button mat-mini-fab color="primary" (click)="addNewTerm()" aria-placeholder="add button">
+      <b>+</b>
+    </button>
+  </form>
+
+  <div *ngFor="let term of terms">
+    <mat-card class="terms-config">
+      <span>{{ term }}</span>
+      <mat-icon class="terms-config-icon" (click)="removeTerm(term)">delete</mat-icon>
+    </mat-card>
+  </div>
+</mat-card>
