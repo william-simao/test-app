@@ -14,7 +14,7 @@ export class HomeFormConfigComponent implements OnInit {
   private differ: IterableDiffers;
 
   constructor(
-    private _form: HomeFormComponent, 
+    public _form: HomeFormComponent, 
     private _differs: IterableDiffers
   ) { this.differ = _differs; }
 
