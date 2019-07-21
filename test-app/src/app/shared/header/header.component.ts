@@ -7,6 +7,8 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  baseUrl: string = '/test-app/';
+
   constructor() { }
 
   ngOnInit() {
