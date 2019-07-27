@@ -54,6 +54,7 @@ import { HomeFormResultComponent } from './pages/home/home-form-result/home-form
 import { AboutPageComponent } from './pages/about/about-page/about-page.component';
 import { HelpPageComponent } from './pages/help/help-page/help-page.component';
 import { routes } from '../app/app-routing/app-routing.module';
+import { HomeFormTypesComponent } from './pages/home/home-form-types/home-form-types.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { routes } from '../app/app-routing/app-routing.module';
     HomeFormConfigComponent,
     HomeFormResultComponent,
     AboutPageComponent,
-    HelpPageComponent
+    HelpPageComponent,
+    HomeFormTypesComponent
   ],
   imports: [
     BrowserModule,
