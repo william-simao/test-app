@@ -1,26 +1,30 @@
-<mat-card (click)="go(true)">
-    <mat-card-title>Secondary papers</mat-card-title>
-    <mat-card-content>
-        <p>
-            The secondary paper description...
-        </p>
-    </mat-card-content>
-</mat-card>
-<br/>
-<mat-card (click)="go(false)">
-    <mat-card-title>Primary papers</mat-card-title>
-    <mat-card-content>
-        <p>
-            The primary paper description...
-        </p>
-    </mat-card-content>
-</mat-card>
-<br/>
-<mat-card (click)="go(false)">
-    <mat-card-title>Others</mat-card-title>
-    <mat-card-content>
-        <p>
-            The other paper description...
-        </p>
-    </mat-card-content>
+<mat-card style="padding: 0!important">
+    <div class="mat-card-box">
+        <mat-card-title>Select the desired search type</mat-card-title>
+    </div>
+    <mat-card (click)="go(true)" class="internal-card">
+        <mat-card-subtitle><b>Secondary papers</b></mat-card-subtitle>
+        <mat-card-content>
+            <p>
+                The secondary paper description...
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card (click)="go(false)" class="internal-card">
+        <mat-card-subtitle><b>Primary papers</b></mat-card-subtitle>
+        <mat-card-content>
+            <p>
+                The primary paper description...
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card (click)="go(false)" class="internal-card">
+        <mat-card-subtitle><b>Others</b></mat-card-subtitle>
+        <mat-card-content>
+            <p>
+                The other paper description...
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <br/>
 </mat-card>
