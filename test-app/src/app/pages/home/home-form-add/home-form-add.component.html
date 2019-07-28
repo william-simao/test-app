@@ -9,12 +9,12 @@
   <form [formGroup]="form" class="full-width">
     <mat-form-field>
       <mat-label>Select category</mat-label>
-      <mat-select formControlName="category">
+      <mat-select formControlName="category" required>
         <mat-option value="General">General</mat-option>
-        <mat-option value="Domains">Domains</mat-option>
+        <mat-option value="Domains">Domain</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="input-config">
+    <mat-form-field class="input-config" required>
       <input matInput placeholder="Enter with the term and press '+' button" formControlName="term">
     </mat-form-field>
     <button mat-mini-fab color="primary" (click)="addNewTerm()" aria-placeholder="add button">
@@ -22,11 +22,11 @@
     </button>
   </form>
   <div class="external-box">
-    <mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-list cols="5" rowHeight="3:1">
       <mat-grid-tile colspan="1">
         <h3>General</h3>
       </mat-grid-tile>
-      <mat-grid-tile colspan="3">
+      <mat-grid-tile colspan="4">
         <div class="test">
           <div *ngFor="let term of generals">
             <mat-card class="terms-config">
@@ -40,7 +40,7 @@
       <mat-grid-tile colspan="1">
         <h3>Domain</h3>
       </mat-grid-tile>
-      <mat-grid-tile colspan="3">
+      <mat-grid-tile colspan="4">
         <div *ngFor="let term of domains">
           <mat-card class="terms-config">
             <span>{{ term }}</span>
