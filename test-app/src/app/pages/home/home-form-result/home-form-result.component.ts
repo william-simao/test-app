@@ -32,7 +32,7 @@ export class HomeFormResultComponent implements OnInit {
   }
 
   ngDoCheck() {
-    const changes = this.differ.find(this._form.terms);
+    const changes = this.differ.find(this._form.generalTerms);
     if (changes) {
       this.baseString = this._form.baseString;
       this.formatIeee();

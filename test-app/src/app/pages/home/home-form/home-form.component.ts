@@ -15,7 +15,8 @@ export class HomeFormComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  public terms: Array<string> = new Array<string>();
+  public generalTerms: Array<string> = new Array<string>();
+  public domainTerms: Array<string> = new Array<string>();
   public baseString: string = '';
   public isSecondary: boolean = false;
 
@@ -35,8 +36,9 @@ export class HomeFormComponent implements OnInit {
     });
   }
 
-  public updateTerms(terms: Array<string>): void {
-    this.terms = terms;
+  public updateTerms(general: Array<string>, domain: Array<string>): void {
+    this.generalTerms = general;
+    this.domainTerms = domain;
   }
 
   public updateBaseString(baseString: string): void {

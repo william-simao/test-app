@@ -1,9 +1,32 @@
+.mat-card-box {
+    color: rgba(0,0,0,.54);
+    background: rgba(0,0,0,.03);
+    padding: 15px;
+}
+
 .full-width {
     width: 100%;
+    padding: 10px;
+}
+
+mat-form-field{
+    padding: 5px;
+}
+
+mat-grid-tile{
+    border: 1px solid rgba(0,0,0,.12);
+}
+
+.external-box{ 
+    padding: 10px;
+}
+
+.test{
+    width: 120px;
 }
 
 .input-config{
-    width: 95%;
+    width: 75%;
 }
 
 .terms-config{

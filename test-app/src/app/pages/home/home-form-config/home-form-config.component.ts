@@ -19,7 +19,7 @@ export class HomeFormConfigComponent implements OnInit {
   ) { this.differ = _differs; }
 
   ngDoCheck() {
-    const changes = this.differ.find(this._form.terms);
+    const changes = this.differ.find(this._form.generalTerms);
     if (changes) {
       this.getStringFormatted();
       this._form.updateBaseString(this.baseString);
@@ -30,7 +30,7 @@ export class HomeFormConfigComponent implements OnInit {
   }
 
   public isLastTerm(index: number): boolean {
-    return (index + 1) !== this._form.terms.length;
+    return (index + 1) !== this._form.generalTerms.length;
   }
 
   public updateOperator(index: number, operator: string): void {
@@ -39,8 +39,8 @@ export class HomeFormConfigComponent implements OnInit {
 
   public getStringFormatted(): void {
     this.baseString = '(';
-    for (let i = 0; i < this._form.terms.length; i++) {
-      let term = this._form.terms[i];
+    for (let i = 0; i < this._form.generalTerms.length; i++) {
+      let term = this._form.generalTerms[i];
       this.baseString += `${this.getTerm(term)}${this.getOperator(i)}`;
     }
     this.baseString += ')';

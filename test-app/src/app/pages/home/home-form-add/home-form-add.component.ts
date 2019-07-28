@@ -12,8 +12,10 @@ export class HomeFormAddComponent implements OnInit {
   
   public form: FormGroup = new FormGroup({
     term: new FormControl(''),
+    category: new FormControl('')
   });
-  public terms: Array<string> = new Array<string>();
+  public generals: Array<string> = new Array<string>();
+  public domains: Array<string> = new Array<string>();
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -21,33 +23,41 @@ export class HomeFormAddComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.terms.push('crowdsourcing');
-    this.terms.push('crowd sourcing');
-    this.terms.push('crowd');
-    this.terms.push('crowdsourced');
-    this._form.updateTerms(this.terms);
+    this.domains.push('crowdsourcing');
+    this.domains.push('crowd sourcing');
+    this.domains.push('crowd');
+    this.domains.push('crowdsourced');
+    this._form.updateTerms(this.generals, this.domains);
   }
 
   public addNewTerm(){
     let newTerm = this.form.controls.term.value;
+    let newCategory = this.form.controls.category.value;
     if (this.checkTerm(newTerm)) {
-      this.terms.push(newTerm);
+      this.addNewCategoryTerm(newTerm, newCategory);
       this.form.controls.term.setValue('');
     }
-    this._form.updateTerms(this.terms);
+    this._form.updateTerms(this.generals, this.domains);
+  }
+
+  public addNewCategoryTerm(term: string, category: string): void {
+    if (category === 'General')
+      this.generals.push(term);
+    else
+      this.domains.push(term);
   }
   
   public removeTerm(term: string): void{
-    var index = this.terms.indexOf(term);
+    var index = this.domains.indexOf(term);
     if (index > -1) {
-      this.terms.splice(index, 1);
+      this.domains.splice(index, 1);
       this.showMessage('The term was removed');
     }
-    this._form.updateTerms(this.terms);
+    this._form.updateTerms(this.generals, this.domains);
   }
 
   public getTerms(): Array<string>{
-    return this.terms;
+    return this.domains;
   }
 
   //terms section
@@ -70,7 +80,7 @@ export class HomeFormAddComponent implements OnInit {
   }
 
   private checkNewTerm(newTerm: string): boolean {
-    return this.terms.indexOf(newTerm) > -1;
+    return this.domains.indexOf(newTerm) > -1;
   }
 
   //util section
