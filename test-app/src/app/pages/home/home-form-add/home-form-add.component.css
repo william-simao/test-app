@@ -34,6 +34,10 @@ mat-form-field{
     margin: 5px;
 }
 
+::ng-deep .align-fix .mat-figure{
+    justify-content: initial !important;
+}
+
 .terms-config-icon{
     float: right;
 }
