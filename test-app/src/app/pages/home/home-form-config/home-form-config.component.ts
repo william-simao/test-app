@@ -1,4 +1,5 @@
 import { Component, OnInit, IterableDiffers, SimpleChanges, Input } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 import { HomeFormComponent } from '../home-form/home-form.component';
 
@@ -14,6 +15,7 @@ export class HomeFormConfigComponent implements OnInit {
   private differ: IterableDiffers;
 
   constructor(
+    private _snackBar: MatSnackBar,
     public _form: HomeFormComponent, 
     private _differs: IterableDiffers
   ) { this.differ = _differs; }
@@ -58,5 +60,21 @@ export class HomeFormConfigComponent implements OnInit {
     if (term.indexOf(' ') > -1 || term.indexOf('-') > -1)
       return `"${term}"`;
     return term;
+  }
+
+  public copy(): void {
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', (this.baseString));
+      e.preventDefault();
+      document.removeEventListener('copy', null);
+    });
+    document.execCommand('copy');
+    this.showMessage();
+  }
+
+  private showMessage(): void {
+    this._snackBar.open('The base string was copied', 'Ok!', {
+      duration: 2000,
+    }); 
   }
 }
