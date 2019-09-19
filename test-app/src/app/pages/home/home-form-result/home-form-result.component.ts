@@ -23,12 +23,36 @@ export class HomeFormResultComponent implements OnInit {
   public ieeeString: string = '';
   public ieee: object = {};
 
+  isTitle = false;
+  isAbstract = false;
+  isKeyword = false;
+
   constructor(
     private _form: HomeFormComponent,
     private _differs: IterableDiffers
   ) { this.differ = _differs; }
 
   ngOnInit() {
+  }
+
+  public search(): void {
+    debugger;
+  }
+
+
+  public checkShowCell(i): boolean {
+    if (this.isTitle && (i === 0 || i === 3))
+      return true;
+    
+    if (this.isAbstract && (i === 1 || i === 4))
+      return true;
+
+    if (this.isKeyword && (i === 2 || i === 5))
+      return true;
+    
+    if (i === 6)
+      return true;
+    return false;
   }
 
   ngDoCheck() {

@@ -21,8 +21,9 @@ export class HomeFormConfigComponent implements OnInit {
   ) { this.differ = _differs; }
 
   ngDoCheck() {
-    const changes = this.differ.find(this._form.generalTerms);
-    if (changes) {
+    const changesGeneral = this.differ.find(this._form.generalTerms);
+    const changesDomains = this.differ.find(this._form.domainTerms);
+    if (changesGeneral || changesDomains) {
       this.getStringFormatted();
       this._form.updateBaseString(this.baseString);
     }
@@ -43,6 +44,11 @@ export class HomeFormConfigComponent implements OnInit {
     this.baseString = '(';
     for (let i = 0; i < this._form.generalTerms.length; i++) {
       let term = this._form.generalTerms[i];
+      this.baseString += `${this.getTerm(term)}${this.getOperator(i)}`;
+    }
+    this.baseString += ') AND (';
+    for (let i = 0; i < this._form.domainTerms.length; i++) {
+      let term = this._form.domainTerms[i];
       this.baseString += `${this.getTerm(term)}${this.getOperator(i)}`;
     }
     this.baseString += ')';
