@@ -41,31 +41,39 @@ export class HomeFormConfigComponent implements OnInit {
   }
 
   public getStringFormatted(): void {
-    this.baseString = '(';
+    this.baseString = ``;
+    if (this._form.generalTerms.length > 0 && this._form.domainTerms.length > 0)
+      this.baseString = `(${this.getGeneralTerms()}) AND (${this.getDomainsTerm()})`;
+    
+    else if (this._form.generalTerms.length > 0 && this._form.domainTerms.length <= 0)
+      this.baseString = `(${this.getGeneralTerms()})`;
+
+    else if (this._form.generalTerms.length <= 0 && this._form.domainTerms.length > 0)
+      this.baseString = `(${this.getDomainsTerm()})`;
+  }
+
+  private getGeneralTerms(): string {
+    let string = ``;
     for (let i = 0; i < this._form.generalTerms.length; i++) {
       let term = this._form.generalTerms[i];
-      this.baseString += `${this.getTerm(term)}${this.getOperator(i)}`;
+      let isLast = this._form.generalTerms.length === i + 1;
+      string += `${term}`;      
+      if (isLast === false)
+        string += ' OR ';
     }
-    this.baseString += ') AND (';
+    return string;
+  }
+
+  private getDomainsTerm(): string {
+    let string = ``;
     for (let i = 0; i < this._form.domainTerms.length; i++) {
       let term = this._form.domainTerms[i];
-      this.baseString += `${this.getTerm(term)}${this.getOperator(i)}`;
+      let isLast = this._form.domainTerms.length === i + 1;
+      string += `${term}`;      
+      if (isLast === false)
+        string += ' OR ';
     }
-    this.baseString += ')';
-  }
-
-  private getOperator(index: number): string {
-    if (!this.isLastTerm(index))
-      return ``;
-    if (this.operators[index] === undefined || this.operators[index] === 'OR')
-      return ` OR `;
-    return `) AND (`;
-  }
-
-  private getTerm(term: string): string {
-    if (term.indexOf(' ') > -1 || term.indexOf('-') > -1)
-      return `"${term}"`;
-    return term;
+    return string;
   }
 
   public copy(): void {

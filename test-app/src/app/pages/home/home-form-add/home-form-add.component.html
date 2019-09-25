@@ -30,7 +30,7 @@
         <div *ngFor="let term of generals">
           <mat-card class="terms-config">
             <span>{{ term }}</span>
-            <mat-icon class="terms-config-icon" (click)="removeTerm(term)">delete</mat-icon>
+            <mat-icon class="terms-config-icon" (click)="removeGeneralTerm(term)">delete</mat-icon>
           </mat-card>
         </div>
       </mat-grid-tile>
@@ -42,7 +42,7 @@
         <div *ngFor="let term of domains">
           <mat-card class="terms-config">
             <span>{{ term }}</span>
-            <mat-icon class="terms-config-icon" (click)="removeTerm(term)">delete</mat-icon>
+            <mat-icon class="terms-config-icon" (click)="removeDomainTerm(term)">delete</mat-icon>
           </mat-card>
         </div>
       </mat-grid-tile>

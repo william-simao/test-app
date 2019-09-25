@@ -33,7 +33,7 @@ export class HomeFormAddComponent implements OnInit {
   public addNewTerm(){
     let newTerm = this.form.controls.term.value;
     let newCategory = this.form.controls.category.value;
-    if (this.checkTerm(newTerm)) {
+    if (this.checkTerm(newTerm, newCategory)) {
       this.addNewCategoryTerm(newTerm, newCategory);
       this.form.controls.term.setValue('');
     }
@@ -47,7 +47,16 @@ export class HomeFormAddComponent implements OnInit {
       this.domains.push(term);
   }
   
-  public removeTerm(term: string): void{
+  public removeGeneralTerm(term: string): void{
+    var index = this.generals.indexOf(term);
+    if (index > -1) {
+      this.generals.splice(index, 1);
+      this.showMessage('The term was removed');
+    }
+    this._form.updateTerms(this.generals, this.domains);
+  }
+
+  public removeDomainTerm(term: string): void{
     var index = this.domains.indexOf(term);
     if (index > -1) {
       this.domains.splice(index, 1);
@@ -61,13 +70,13 @@ export class HomeFormAddComponent implements OnInit {
   }
 
   //terms section
-  private checkTerm(newTerm: string): boolean {
+  private checkTerm(newTerm: string, newCategory: string): boolean {
     if (this.checkIsValid(newTerm)) {
       this.showMessage('The term is invalid');
       return false;
     }
 
-    if (this.checkNewTerm(newTerm)) {
+    if (this.checkNewTerm(newTerm, newCategory)) {
       this.showMessage('The term has already been added');
       return false;
     }    
@@ -79,7 +88,9 @@ export class HomeFormAddComponent implements OnInit {
     return newTerm.trim() === '' || newTerm === '' || newTerm === null || newTerm === undefined;
   }
 
-  private checkNewTerm(newTerm: string): boolean {
+  private checkNewTerm(newTerm: string, newCategory: string): boolean {
+    if (newCategory === 'General')
+      return this.generals.indexOf(newTerm) > -1;
     return this.domains.indexOf(newTerm) > -1;
   }
 
