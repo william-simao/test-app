@@ -6,15 +6,4 @@
     <mat-card-title>{{ baseString }}</mat-card-title>
     <button mat-button (click)="copy()" *ngIf="this.baseString !== ''"><mat-icon>content_copy</mat-icon></button>
   </mat-card-header>
-
-  <div *ngFor="let term of _form.terms; let i = index" style="float: left">
-      <mat-card class="terms-config" style="padding: 15px">
-        <span>{{ term }}</span>
-      </mat-card>
-    
-      <mat-button-toggle-group #group="matButtonToggleGroup" class="terms-config" *ngIf="isLastTerm(i)" value="OR">
-        <mat-button-toggle value="AND" (click)="updateOperator(i, 'AND')">AND</mat-button-toggle>
-        <mat-button-toggle value="OR" (click)="updateOperator(i, 'OR')">OR</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
 </mat-card>
